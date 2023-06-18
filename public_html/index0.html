@@ -1,0 +1,615 @@
+<html>
+    <head>
+    <!-- Styles -->
+    <style>
+
+    #chartdivbar {
+      width: 100%;
+      height: 500px;
+    }
+    #rating {
+      width: 100%;
+      height: 500px;
+    }
+    #owner {
+      width: 100%;
+      height: 500px;
+    }
+    #Prediction{
+      height: 850px;
+    }
+    #Prediction_rating {
+      width: 40%;
+      height: 500px;
+      position: absolute;
+      left: 5px;
+    }
+    #Prediction_owner {
+      width: 40%;
+      height: 500px;
+      position: absolute;
+      right: 30px;
+    }
+    #formsection{
+      height: 650px;       
+    }
+    #steam1 {
+      position: absolute;
+      left: 5;
+      width: 35%;
+    }
+    #steam2 {
+      position: absolute;
+      width: 35%;
+      right: 5px;
+    }
+    
+    .amcharts-g2 {
+      stroke-dasharray: 3px 3px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      -webkit-animation: am-moving-dashes 1s linear infinite;
+      animation: am-moving-dashes 1s linear infinite;
+    }
+    
+    @-webkit-keyframes am-moving-dashes {
+      100% {
+        stroke-dashoffset: -31px;
+      }
+    }
+    @keyframes am-moving-dashes {
+      100% {
+        stroke-dashoffset: -31px;
+      }
+    }
+    
+    .amcharts-graph-column-front {
+      -webkit-transition: all .3s .3s ease-out;
+      transition: all .3s .3s ease-out;
+    }
+    .amcharts-graph-column-front:hover {
+      fill: #496375;
+      stroke: #496375;
+      -webkit-transition: all .3s ease-out;
+      transition: all .3s ease-out;
+    }
+    
+    .amcharts-g3 {
+      stroke-linejoin: round;
+      stroke-linecap: round;
+      stroke-dasharray: 500%;
+      stroke-dasharray: 0 /;    /* fixes IE prob */
+      stroke-dashoffset: 0 /;   /* fixes IE prob */
+      -webkit-animation: am-draw 40s;
+      animation: am-draw 40s;
+    }
+    @-webkit-keyframes am-draw {
+        0% {
+            stroke-dashoffset: 500%;
+        }
+        100% {
+            stroke-dashoffset: 0%;
+        }
+    }
+    @keyframes am-draw {
+        0% {
+            stroke-dashoffset: 500%;
+        }
+        100% {
+            stroke-dashoffset: 0%;
+        }
+    }
+    </style>
+    
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/radar.js"></script> <!--prediction-->
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Creative Studio landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Creative Studio | Free Bootstrap 4.3.x template</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Creative Studio main styles -->
+    <link rel="stylesheet" href="assets/css/creative-studio.css">
+   </head>
+   <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!--No Navigation-->
+        <!-- Page Navigation -->
+        <nav class="navbar custom-navbar navbar-expand-lg navbar-dark" data-spy="affix" data-offset-top="20">
+            <div class="container">
+                <a class="navbar-brand" href="#">  <!--navbar-brand-->
+                    <img src="assets/imgs/Steam_logo2.png" alt="steamlogo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Topic">MachineLearning</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Rating">Rating</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#Owners">Owners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary btn-sm ml-lg-3" href="#Prediction">Prediction</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#team">OurTeam</a>
+                        </li>
+                  </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- End Of Page Navigation -->
+    <!--No Navigation-->
+    <!-- Page Header -->
+    <header class="header">
+        <div class="overlay">
+            <h6 class="subtitle">Small Team With Big Ideas</h6>
+            <h1 class="title">STEAM智慧決策系統</h1>
+            <div class="buttons text-center">
+                <a href="#Topic" class="btn btn-primary rounded w-lg btn-lg my-1">ML & DL</a> 
+                                
+                <a href="#Prediction" class="btn btn-outline-light rounded w-lg btn-lg my-1">我要預測</a>
+            </div>
+            <!--wiki game graph-->
+            <center><div><img src="assets/imgs/wikigamegraph.png"> 
+            <br>該圖表顯示了1977 年的崩潰、街機遊戲的黃金時代（1978-1983）、1983 年的視頻遊戲崩潰、遊戲機的複興（1980 年代後期）以及自 2008 年以來手機遊戲的興起的影響。
+            </div></center>
+
+            <!--End wiki game graph-->             
+        </div>      
+    </header>
+    <!-- End Of Page Header -->
+    
+   <!-- About Section -->
+   <section id="about">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-5 col-lg-4">
+                <img src="assets/imgs/about.jpg" alt="" class="w-100 img-thumbnail mb-3">
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <h6 class="section-subtitle mb-0">Unpredicble</h6>
+                <h6 class="section-title mb-3"> Online world</h6>
+                <p>早期的開發成本極低，視頻遊戲可以賺到很多錢。隨著計算和圖形能力的增加，開發團隊的規模也在增加，因為需要更多的員工來解決不斷增加的技術和設計複雜性。</p>
+                <p>除了不斷增長的開發成本之外，營銷預算也急劇增長，有時是開發成本的兩到三倍。</p>
+                <p>第七代遊戲機期間全行業對高清圖形的廣泛採用大大增加了開發團隊的規模，並減少了正在開發的高預算、高質量遊戲的數量。到 2018 年，
+                    美國視頻遊戲行業的收入已與美國電影行業相當，當年兩者的收入均約為 430 億美元。</p>
+                <p>從實體零售轉向數字下載導致GameStop等視頻遊戲零售商的銷售額嚴重下滑，其他媒體零售商也被互聯網交付取代，遊戲世界從製作到銷售面臨巨變。</p>
+            </div>
+        </div>
+    </div>
+    </section>
+<!-- End of About Section -->
+
+    <!-- HTML -->
+    <div id="chartdivbar"></div> 
+
+<!-- Choose Topic -->
+  <section id="Topic">
+      <div class="container">
+          <h6 class="section-subtitle text-center">Expolre the Steam World</h6>
+          <h6 class="section-title text-center mb-6">Choose A Topic</h6>
+          <div class="row">
+              <div class="col-md-6">
+                  <div class="testimonial-wrapper">
+                      <div class="img-holder">
+                          <a href="#Rating">
+                          <button type="button" class="btn btn-outline-primary play-control" data-toggle="modal" > <!--data-target="#exampleModalCenter"-->
+                              <i class="ti-control-play" ></i>
+                            </button>
+                          </a>
+                          <!--<img src="assets/imgs/avatar-5.jpg" alt="Landing page">  -->                   
+                      </div>
+                      <div class="body">
+                          <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit.  perspiciatis adipisci nihil.</p>
+                          <h6 class="section-title mb-6">RATING</h6>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-6" >
+                  <div class="testimonial-wrapper">
+                      <div class="img-holder" >
+                          <a href="#Owners">
+                          <button type="button" class="btn btn-outline-primary play-control" data-toggle="modal" >
+                              <i class="ti-control-play" ></i>
+                            </button>
+                          </a>   
+                          <!--<img src="assets/imgs/avatar-6.jpg" alt="landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">  -->    
+                      </div>
+                      <div class="body">
+                          <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit.  perspiciatis adipisci nihil.</p>
+                          <h6 class="section-title mb-6">OWNERS</h6>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+    <!-- About Section with rating -->
+    <section id ="Rating" class="has-bg-img py-md">
+        <div class="container text-center">
+            <h6 class="section-subtitle">機器學習 Machine Learning</h6>
+            <h6 class="section-title mb-6">Rating</h6>
+            <div class="widget mb-4">
+                <div class="widget-item">
+                    <i class="ti-notepad"></i>
+                    <h4>AI Models<br>選擇模型</h4>
+                </div>
+                <div class="widget-item">
+                    <i class="ti-layout"></i>
+                    <h4>Accuracy<br>準確度</h4>
+                </div>
+                <div class="widget-item">
+                    <i class="ti-filter"></i>
+                    <h4>Speed<br>速度</h4>
+                </div>
+                <div class="widget-item">
+                    <i class="ti-thumb-up"></i>
+                    <h4>Prediction<br>預測</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Of About Sectoin -->      
+
+    <!-- HTML -->
+    <div id="rating"></div>
+    
+    <!-- About Section with Owners -->
+    <section class="has-bg-img py-md" id="Owners">
+        <div class="container text-center">
+            <h6 class="section-subtitle">機器學習 Machine Learning</h6>
+            <h6 class="section-title mb-6">Owners</h6>
+            <div class="widget mb-4">
+                <div class="widget-item">
+                    <i class="ti-notepad"></i>
+                    <h4>AI Models<br>選擇模型</h4>
+                </div>
+                <div class="widget-item">
+                    <i class="ti-layout"></i>
+                    <h4>Accuracy<br>準確度</h4>
+                </div>
+                <div class="widget-item">
+                    <i class="ti-filter"></i>
+                    <h4>Speed<br>速度</h4>
+                </div>
+                <div class="widget-item">
+                    <i class="ti-thumb-up"></i>
+                    <h4>Prediction<br>預測</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- End Of owners Sectoin -->
+    <!-- HTML -->
+    <div id="owner"></div> 
+ 
+ 
+ 
+
+  <!-- Prediction  -->
+  <section  id="Prediction">
+    <div class="container text-center">
+        <h6 class="section-subtitle">Our Awesome Works!</h6>
+        <h6 class="section-title mb-5">Prediction</h6>
+    </div>
+
+
+    <div id="Prediction_rating"></div>
+    <div id="Prediction_owner"></div>
+  </section>
+
+  <section id="formsection">
+    <!--prediction1 form-->
+    <div id="steam1">
+      <h6 class="section-title mb-5" >Rating</h6>
+      <form action="/steam1">
+        Plateforms: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="a">Linux&Mac Supported</option>
+            <option value="0" name="a">None Linux%Mac Supported</option>
+        </select><br>
+        Package Price: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="b">Special Offer</option>
+            <option value="0" name="b">None Special Offer</option>
+        </select><br>
+        Coming Soon: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="c">Yes</option>
+            <option value="0" name="c">No</option>
+        </select><br>
+        Price: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->s          <!--1,0的順序與訓練模型帶入的欄位順序有關,請勿更動-->
+            <option value="[1,0,0,0]" name="d">Free</option>
+            <option value="[0,0,1,0]" name="d">Less than EUR$3.3</option>
+            <option value="[0,0,0,1]" name="d">Less than EUR$9</option>
+            <option value="[0,1,0,0]" name="d">Less than EUR$12.5</option>
+          </select><br>
+        Published Year: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="[0,1,0,0]" name="e">Less than 1 years</option>
+            <option value="[0,0,1,0]" name="e">Less than 3 years</option>
+            <option value="[0,0,0,1]" name="e">Less than 5 years</option>
+            <option value="[1,0,0,0]" name="e">More than 5 years</option>
+        </select><br>
+        Singleplayer: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="f">Yes</option>
+            <option value="0" name="f">No</option>
+        </select><br>
+        Full Controller Support: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="g">Yes</option>
+            <option value="0" name="g">No</option>
+        </select><br>
+        Vision Support: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="h">Yes</option>
+            <option value="0" name="h">No</option>
+        </select><br>
+        Achievement System: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="i">Yes</option>
+            <option value="0" name="i">No</option>
+        </select><br>
+        Indie: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="j">Yes</option>
+            <option value="0" name="j">No</option>
+        </select><br>
+        Stylized Screen: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="k">Yes</option>
+            <option value="0" name="k">No</option>
+        </select><br>
+        Adventure Casual: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="l">Yes</option>
+            <option value="0" name="l">No</option>
+        </select><br>
+        Adventure: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="m">Yes</option>
+            <option value="0" name="m">No</option>
+        </select><br>
+        Action: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="1" name="n">Yes</option>
+            <option value="0" name="n">No</option>
+        </select><br>
+        <input type="submit" value="送出">
+      </form>
+    </div>
+
+    <!--prediction2 form-->
+    <div id="steam2">
+      <h6 class="section-title mb-5" >Owner</h6>
+      <form action="/steam2">
+        DLC Supported: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br>
+        Price: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+          <option value="Free">Free</option>
+          <option value="Less than EUR$3.3">Less than EUR$3.3</option>
+          <option value="Less than EUR$9">Less than EUR$9</option>
+          <option value="Less than EUR$12.5">Less than EUR$12.5</option>
+          <option value="More than EUR$12.5">More than EUR$12.5</option>
+        </select><br>
+        Published Year: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+          <option value="Not published yet">Not published yet</option>
+          <option value="Published less than 1 years">Published less than 1 years</option>
+          <option value="Published 1~3 years">Published 1~3 years</option>
+          <option value="Published 3~5 years">Published 3~5 years</option>
+          <option value="Published more than 5 years">Published more than 5 years</option>
+        </select><br>
+        Package Price: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+          <option value="No package">No package</option>
+          <option value="Package less than EUR$1">Package less than EUR$1</option>
+          <option value="Package less than EUR$2.5">Package less than EUR$2.5</option>
+          <option value="Package less than EUR$5">Package less than EUR$5</option>
+          <option value="Package less than EUR$7">Package less than EUR$7</option>
+          <option value="Package less than EUR$10">Package less than EUR$10</option>
+          <option value="Package less than EUR$15">Package less than EUR$15</option>
+          <option value="Package more than EUR$15">Package more than EUR$15</option>
+        </select><br>
+        Forever (Median): <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="0 min">0 min</option>
+            <option value="1~30 min">1~30 min</option>
+            <option value="More than 30 min">More than 30 min</option>
+        </select><br>
+        Labeled with Coming Soon: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br>
+        Support Language: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="Only supported English">No data</option>
+            <option value="Only 1 language supported">Only 1 language supported</option>
+            <option value="More language supported">More language supported</option>
+        </select><br>
+        Players Number: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="No label">No label</option>
+            <option value="Single player">Single</option>
+            <option value="Local & Multiplayer"></option>
+            <option value="LAN & Multiplayer">Local & Multiplayer</option>
+            <option value="Online & Multiplayer">Online & Multiplayer</option>
+        </select><br>
+        RPG: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="None RPG">None RPG</option>
+            <option value="Common RPG">Common RPG</option>
+            <option value="Janpanese RPG">Janpanese RPG</option>
+            <option value="Rogue-Like">Rogue-Like</option>
+        </select><br>
+        Publisher: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="Only published 1 game">Only published 1 game</option>
+            <option value="Published more than 2 games">Published more than 2 games</option>
+            <option value="Published more than 20 games">Published more than 20 games</option>
+            <option value="Published more than 50 games">Published more than 50 games</option>
+            <option value="Published more than 200 games">Published more than 200 games</option>
+        </select><br>
+        Atmospheric: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="Common">Common</option>
+            <option value="Magnificent immersive">Magnificent immersive</option>
+            <option value="Funny">Funny</option>
+            <option value="Horror">Horror</option>
+        </select><br>
+        Screen: <!--選單標題-->
+        <select> <!--下方填寫選單文字-->
+            <option value="Common">Common</option>
+            <option value="Style">Style</option>
+            <option value="Grid">Grid</option>
+        </select><br>
+        <input type="submit" value="送出">
+      </form>
+    </dic>
+  </section>
+
+      <!-- Team Section -->
+      <section id="team">
+        <div class="container">
+            <h6 class="section-subtitle text-center">Meet With</h6>
+            <h6 class="section-title mb-5 text-center">Our Angels</h6>
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="card text-center mb-4">
+                        <img class="card-img-top inset" src="assets/imgs/avatar.jpg">
+                        <div class="card-body">
+                            <h6 class="small text-primary font-weight-bold">FOUNDER</h6>
+                            <h5 class="card-title">Matthew Davis</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
+                            <div class="socials">
+                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
+                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card text-center mb-4">
+                        <img class="card-img-top inset" src="assets/imgs/avatar-1.jpg">
+                        <div class="card-body">
+                            <h6 class="small text-primary font-weight-bold">CEO</h6>
+                            <h5 class="card-title">Barbara Ross</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
+                            <div class="socials">
+                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
+                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card text-center mb-4">
+                        <img class="card-img-top inset" src="assets/imgs/avatar-2.jpg">
+                        <div class="card-body">
+                            <h6 class="small text-primary font-weight-bold">Designer</h6>
+                            <h5 class="card-title">Karen Perry</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
+                            <div class="socials">
+                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
+                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card text-center mb-4">
+                        <img class="card-img-top inset" src="assets/imgs/avatar-3.jpg">
+                        <div class="card-body">
+                            <h6 class="small text-primary font-weight-bold">App Designer</h6>
+                            <h5 class="card-title">Ashley Diaz</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
+                            <div class="socials">
+                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
+                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card text-center mb-4">
+                        <img class="card-img-top inset" src="assets/imgs/avatar-4.jpg">
+                        <div class="card-body">
+                            <h6 class="small text-primary font-weight-bold">Developer</h6>
+                            <h5 class="card-title">Edward Harris</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
+                            <div class="socials">
+                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
+                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="card text-center mb-4">
+                        <img class="card-img-top inset" src="assets/imgs/avatar-5.jpg">
+                        <div class="card-body">
+                            <h6 class="small text-primary font-weight-bold">photographer</h6>
+                            <h5 class="card-title">Brian Scott</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
+                            <div class="socials">
+                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
+                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
+                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End of Team Sectoin -->
+
+    <script src="assets/js/chartdivbar.js" ></script>
+    <script src="assets/js/rating.js" ></script>
+    <script src="assets/js/owner.js" ></script>
+    <script src="assets/js/Prediction_rating.js" ></script>
+    <script src="assets/js/Prediction_owner.js" ></script>
+
+</body>
+    </body>
+</html>
